@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="CSS/CSSforMain1.css">
+</head>
+
+<body>
+    <!--DOM start-->
+    <!--Container Div-->
+    <div id="container">
+        <!--Login?-->
+        <!--로그인 유도(클릭 후 hide())-->
+        <button id="sugLogin" class="sugLogin">Login?</button>
+        <form action="로그인정보처리.jsp" id="frmForLogin" name="frmForLogin" class="sugLogin">
+            <!--sugLogin클릭 후 show()-->
+            <label for="eid">ID : </label><input type="email" name="eid" id="eid"><br>
+            <label for="pw">PW : </label><input type="password" name="pw" id="pw"><br>
+            <input type="button" value="Join?" id="sugJoin"><input type="button" value="Login!" id="reqLogin"><input type="button" value="fold" id="foldAndReset"><br>
+            <a href="회원정보찾기.jsp">Don't remember?</a>
+        </form>
+
+        <!--catch phrase-->
+        <div id="catchDiv"><span id="catchSpan">Do you want to Leave?</span></div>
+        <!--각종navi기능 담는다./로그인도 옮길까?-->
+        <div id="sideNavi"><ul>
+            <li class="firstStep"><a href=""></a></li>
+            <li class="firstStep"><a href=""></a></li>
+            <li class="firstStep"><a href=""></a></li>
+            <li class="firstStep"><a href=""></a></li>
+            <li class="firstStep"><a href=""></a></li>
+        </ul></div>
+        <!--Search Bar and Option-->
+        <div id="searchDiv"><input type="text" name="searchBar" id="searchBar"><input type="button" value="Search" id="searchBtn"><input type="button" value="목적지별탐색" id="searchByDes"></div>
+
+        <div id="secContainer">
+            <!--default show div (searchbar를 통한 검색시 hide후 검색결과 show)-->
+            <div id="tourRecco">
+                <div id="panelBody">
+                    <!--여행지사진 일정 요금 가이드정보 여행후기목록-->
+                    <!--div#panel$[class='tourPanel']*5-->
+
+                </div>
+                <!--순환 패널 컨트롤 -->
+                <ul>
+                    <li><a href="#rc1"><img src="점모양.jpg" alt="">0
+                            <!--임시--></a></li>
+                    <li><a href="#rc2"><img src="" alt="">0</a></li>
+                    <li><a href="#rc3"><img src="" alt="">0</a></li>
+                    <li><a href="#rc4"><img src="" alt="">0</a></li>
+                    <li><a href="#rc5"><img src="" alt="">0</a></li>
+                </ul>
+            </div>
+            <!--search results-->
+            <!--<div id="searchRS">
+                검색 결과 갯수를 특정 할 수 없으므로 js에서 element를 생성하여 child로 첨부한다.
+            </div>-->
+
+        </div>
+        <!--secContainer end-->
+        <!--join & 개인정보찾기를 위한 modal-->
+        <div id="forJoin"></div>
+        <div id="forPrivateInfo"></div>
+    </div>
+    <!--Container end-->
+
+    <!--DOM end / Script start-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        /*로그인 버튼 동작*/
+        $('#sugLogin').click(function() {
+            $(this).hide();
+            $('#frmForLogin').show();
+        })
+        /*서치바 동작*/
+        $('#searchBar').click(function() {
+            $('#searchDiv').stop().animate({
+                top: "20px"
+            }, 800);
+            $('#catchDiv').stop().fadeOut(1000);
+            $('#container .sugLogin').stop().fadeOut(500);
+            $('#secContainer').stop().animate({
+                top: "80px",
+                height: "920px"
+            }, 1000);
+            $('#panelBody').stop().animate({
+                width:"96%",
+				left:"2%"                            
+            });
+            /*$('#searchRS').stop().delay(820).fadeToggle(800);*/
+        });
+        $('#searchBar').blur(function() {
+            $('#searchDiv').stop().animate({
+                top: "180px"
+            }, 500);
+            $('#catchDiv').stop().fadeIn(1000);
+            $('#container button.sugLogin').stop().fadeIn(500);
+            $('#secContainer').stop().animate({
+                top: "250px",
+                height: "750px"
+            }, 500);
+            $('#tourRecco').stop().fadeIn(800);
+           /* $('#searchRS').stop().fadeToggle(800);*/
+        });
+
+    </script>
+</body>
+
+</html>

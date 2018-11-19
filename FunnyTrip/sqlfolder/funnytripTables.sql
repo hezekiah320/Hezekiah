@@ -23,13 +23,14 @@ tourNumber number(8) constraint tour_audioSrc_fk references toursuggestion(tourn
 audioSrc varchar2(200)
 );
 
-create table Guide(
-guidenumber number(8) constraint tourguide_pk primary key,
+create table member(
+memberNumber number(8) constraint tourguide_pk primary key,
 id_email varchar2(30) unique not null,
 pw varchar2(30) not null,
 regDate date not null,
-gender varchar2(1) not null,
+gender varchar2(6) not null,
 TourGuideCount number(4) default 0,
 message varchar2(1000),
-imgsrc varchar2(200)
+imgsrc varchar2(200),
+birth date
 );
